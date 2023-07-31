@@ -14,12 +14,21 @@ app.use(express.urlencoded({extended: true}));
 // static path for index
 app.use(express.static('public'))
 
-// gets info from index and notes
+// displays index
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
 );
+// displays notes
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(_dirname, "/public/notes.html"))
+res.sendFile(path.join(__dirname, "/public/notes.html"))
+);
+app.get("/api/notes", (req, res) =>
+res.sendFile(path.join(__dirname, "/public/notes.html"))
+);
+
+// catch all that will take us back to homepage
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/public/index.html"))
 );
 
 app.listen(PORT, () =>
