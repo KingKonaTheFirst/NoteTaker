@@ -2,11 +2,14 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const { readFromFile, readAndAppend, deleteFromFile} = require('./helpers/fsUtils')
 // making express a varible
 const app = express();
 // defines which port to use either with heroku or local
 const PORT = process.env.PORT || 3001;
+const arrayNote = [];
 // generate unique number for notes
+
 const uuid = require('./helpers/uuid')
 // middlewear
 app.use(express.json());
