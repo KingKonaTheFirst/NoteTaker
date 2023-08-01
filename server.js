@@ -30,8 +30,7 @@ app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 app.get("/api/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "/public/notes.html"))
-  readFromFile("./db/db.json").then((data) => res.json(json.parse(data)));
+  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
 );
 
 // catch all that will take us back to homepage
