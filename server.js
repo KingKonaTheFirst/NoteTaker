@@ -33,6 +33,23 @@ app.get("/api/notes", (req, res) =>
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
 );
 
+// posts in/saves notes to json
+app.post("/api/notes", (req, res) => {
+  const { title, text } = req.body;
+
+  if (req.body) {
+    const noteObj = {
+      title,
+      text,
+      id: uuid(),
+    };
+
+    readAndAppend(noteObj, "./db/db.json");
+    res.json(`Note Saved Properly`);
+  } else {
+    res.error("Note Did Not Save");
+  }
+});
 // catch all that will take us back to homepage
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
